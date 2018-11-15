@@ -26,7 +26,7 @@ xtrain = images[0:10000]
 xlabels = labels[0:10000]
 print('building....')
 c = [.25,.5,1,2,4]
-model = SVC(C = 1)
+model = SVC(C = 1, kernel = 'linear')
 model.fit(xtrain, xlabels)
 y_hat = model.predict(xtrain)
 
