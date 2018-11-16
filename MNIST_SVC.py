@@ -22,8 +22,8 @@ images,labels = mndata.load_training()
 images_test, labels_test = mndata.load_testing()
 #%%
 print("Partition train")
-xtrain = images[0:10000]
-xlabels = labels[0:10000]
+xtrain = images#[0:10000]
+xlabels = labels#[0:10000]
 print('building....')
 c = [.25,.5,1,2,4]
 model = SVC(C = 1, kernel = 'linear')
