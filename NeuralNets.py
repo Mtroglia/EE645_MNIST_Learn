@@ -5,6 +5,10 @@ Implementation of neural network
 
 import math
 import random
+from mnist import MNIST
+from sklearn import preprocessing
+import numpy as np
+
 
 
 class NeuralNet:
@@ -35,9 +39,15 @@ class NeuralNet:
 		return data
 		
 	# We use sigmoid function as activation function
-	def activation(self, x, a):
-		x = math.exp(x*a)
-		return x/(x+1)
+	def activationSigmoid(self, x, a):
+		#x = math.exp(x*a)
+		if x*a < 0: #if x is a large negitive, we exceed floating point range
+			return(1- 1/(1+math.exp(x*a)))
+		else:
+			return(1/(1+math.exp(-x*a)))
+
+
+		#return x/(x+1)
 	
 	# 'a' is the pointor to previous layer, 'b' is the weights
 	def dotProduct(self, a, b):
@@ -62,7 +72,7 @@ class NeuralNet:
 		for j in range(1,self._layer):
 			current_layer = self.nets[j]
 			for k in current_layer:
-				k['value'] = self.activation(self.dotProduct(k['father'], k['weights']), 1)
+				k['value'] = self.activationSigmoid(self.dotProduct(k['father'], k['weights']), 1)
 		# Output the actual value, no binarilization 
 		output = []
 		for t in self.nets[self._layer-1]:
@@ -164,10 +174,11 @@ class NeuralNet:
 		define you own function 'trim' to binarilize the output
 	'''
 	def errorCalculate(self, sample_l, trim):
+		print('Calc error...')
 		err = 0
 		for i in sample_l:
 			b = trim(self.evaluate(i[0]))
-			print(b)
+			#print(b)
 			if not self.isMatch(b,i[1]):
 				err += 1
 		return err / len(sample_l)
@@ -178,13 +189,43 @@ class NeuralNet:
 	'''
 	def SDG(self, train_l, l_step, n_epoch):
 		for i in range(n_epoch):
+			if i%500==0:
+				print('Running epoch ', i)
+
 			train = random.sample(train_l,1)[0]
 			self.gradientDecent(train, l_step)
 
+#%%
 
-a = NeuralNet([3,10,10,2])
+mndataSet = '.\Dataset'
+print('Loading and processing Data')
+mndata = MNIST()
+#mndata.gz =True
+mndata = MNIST(mndataSet)
+print('Loading training')
+images,labels = mndata.load_training()
+#images_test, labels_test = mndata.load_testing()
 
-sample_l = [
+#Transform the labels into from single digit to a 10-arry binary vector aka One-hot-matrix
+labels = np.transpose(np.reshape(labels,(-1,len(labels))))
+encoder = preprocessing.OneHotEncoder()
+encoder.fit(labels)
+oneHotLabels = encoder.transform(labels).toarray()
+
+#%%
+samples = []
+n_training=labels.shape[0]
+for i in range(0,labels.shape[0]):
+	samples.append([images[i],oneHotLabels[i]])
+
+#%%
+inputSize = len(images[0])
+outputSize = len(oneHotLabels[0])
+a = NeuralNet([inputSize,30,outputSize])
+#%%
+#a = NeuralNet([3,30,2])
+
+sample_1 = [
 [[0,0,0],[0,0]],
 [[0,0,1],[0,1]],
 [[0,1,0],[0,1]],
@@ -194,12 +235,16 @@ sample_l = [
 [[1,0,1],[1,0]],
 [[1,1,1],[1,1]]
 ]
+#a.SDG(sample_l, 1, 10000)
 
+#%%
 
-a.SDG(sample_l, 1, 10000)
+a.SDG(samples, 1, 10000)
 
 #b = a.evaluate([1,1,1])
 #a.printLayers()
-print(a.errorCalculate(sample_l, a.naiveBinary)) # achieves the training error to be 0.0
+#print(a.errorCalculate(sample_l, a.naiveBinary)) # achieves the training error to be 0.0
+print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
+
 
 
