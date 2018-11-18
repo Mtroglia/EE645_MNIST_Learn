@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8667822-59ea-43ce-a732-ad12432c53df" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NeuralNets.py" beforeDir="false" afterPath="$PROJECT_DIR$/NeuralNets.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,16 +55,16 @@
         <counts>
           <entry key="MNIST_NN" value="224" />
           <entry key="MNIST_SVC" value="53" />
-          <entry key="NeuralNets" value="442" />
+          <entry key="NeuralNets" value="764" />
           <entry key="Python Console" value="95" />
-          <entry key="py" value="3978" />
+          <entry key="py" value="4099" />
           <entry key="txt" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="41" />
-          <entry key="Python" value="4792" />
+          <entry key="Python" value="5235" />
         </counts>
       </usages-collector>
     </session>
@@ -105,10 +104,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NeuralNets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="231" column="16" lean-forward="true" selection-start-line="231" selection-start-column="16" selection-end-line="231" selection-end-column="16" />
+            <state relative-caret-position="345">
+              <caret line="246" selection-start-line="246" selection-end-line="246" />
               <folding>
                 <element signature="e#67#78#0" expanded="true" />
+                <marker date="1542529214215" expanded="true" signature="4082:4086" ph="..." />
               </folding>
             </state>
           </provider>
@@ -127,6 +127,9 @@
     <findStrings>
       <find>naiveBinary</find>
       <find>activation</find>
+      <find>output</find>
+      <find>evalu</find>
+      <find>error</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -363,7 +366,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2065" y="-231" width="1643" height="1046" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22425774" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -449,10 +451,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NeuralNets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="231" column="16" lean-forward="true" selection-start-line="231" selection-start-column="16" selection-end-line="231" selection-end-column="16" />
+        <state relative-caret-position="345">
+          <caret line="246" selection-start-line="246" selection-end-line="246" />
           <folding>
             <element signature="e#67#78#0" expanded="true" />
+            <marker date="1542529214215" expanded="true" signature="4082:4086" ph="..." />
           </folding>
         </state>
       </provider>

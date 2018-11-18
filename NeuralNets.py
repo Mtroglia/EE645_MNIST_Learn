@@ -151,12 +151,15 @@ class NeuralNet:
 
 	# simple binarilization
 	def naiveBinary(self, a):
+		print('len a ',a)
 		for i in range(len(a)):
+			print(a[i])
 			if a[i] > 0.5:
 				a[i] = 1
 			else:
 				a[i] = 0
 		return a
+
 	
 	# binarilize the maximum value to be 1 and others to be zeros
 	def max2one(self, a):
@@ -241,10 +244,12 @@ sample_1 = [
 
 a.SDG(samples, 1, 10000)
 
+#%%
 #b = a.evaluate([1,1,1])
 #a.printLayers()
 #print(a.errorCalculate(sample_l, a.naiveBinary)) # achieves the training error to be 0.0
-print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
+print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
+#print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
 
 
 
