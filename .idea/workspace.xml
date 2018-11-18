@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a8667822-59ea-43ce-a732-ad12432c53df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MNIST_SVC.py" beforeDir="false" afterPath="$PROJECT_DIR$/MNIST_SVC.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,36 +33,37 @@
         <counts>
           <entry key="project.closed" value="5" />
           <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="3" />
+          <entry key="py" value="5" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="3" />
+          <entry key="Python" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="MNIST_NN" value="224" />
           <entry key="MNIST_SVC" value="53" />
           <entry key="Python Console" value="95" />
-          <entry key="py" value="1997" />
+          <entry key="py" value="3047" />
           <entry key="txt" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="41" />
-          <entry key="Python" value="2145" />
+          <entry key="Python" value="3419" />
         </counts>
       </usages-collector>
     </session>
@@ -73,7 +73,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state>
               <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
             </state>
           </provider>
@@ -88,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MNIST_SVC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+            <state relative-caret-position="99">
+              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -103,8 +103,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OneLayerNN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+            <state relative-caret-position="115">
+              <caret line="43" column="35" lean-forward="true" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/Downloads/MNIST_NN.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="591">
+              <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+              <folding>
+                <element signature="e#67#78#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,6 +140,8 @@
         <option value="$PROJECT_DIR$/MNIST_Process.py" />
         <option value="$PROJECT_DIR$/OneLayerNN.py" />
         <option value="$PROJECT_DIR$/MNIST_SVC.py" />
+        <option value="$PROJECT_DIR$/MNIST_NN.py" />
+        <option value="$USER_HOME$/Downloads/MNIST_NN.py" />
       </list>
     </option>
   </component>
@@ -139,9 +153,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="2065" />
-    <option name="y" value="-139" />
-    <option name="width" value="1209" />
-    <option name="height" value="806" />
+    <option name="y" value="-231" />
+    <option name="width" value="1643" />
+    <option name="height" value="1046" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -156,11 +170,6 @@
             <path>
               <item name="MNIST_Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="MNIST_Learning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MNIST_Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MNIST_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Dataset" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -186,7 +195,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.MNIST_SVC">
+  <component name="RunManager" selected="Python.MNIST_NN">
+    <configuration name="MNIST_NN" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="MNIST_Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MNIST_NN.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="MNIST_Process" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="MNIST_Learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -279,9 +307,11 @@
       <item itemvalue="Python.MNIST_Process" />
       <item itemvalue="Python.MNIST_SVC" />
       <item itemvalue="Python.OneLayerNN" />
+      <item itemvalue="Python.MNIST_NN" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.MNIST_NN" />
         <item itemvalue="Python.MNIST_SVC" />
         <item itemvalue="Python.OneLayerNN" />
         <item itemvalue="Python.MNIST_Process" />
@@ -311,9 +341,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="934" extended-state="6" />
+    <frame x="2065" y="-231" width="1643" height="1046" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07852349" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22425774" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -328,12 +359,12 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3290735" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.35286784" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.2595838" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49518305" visible="true" weight="0.09127517" />
-      <window_info anchor="right" x="0" y="0" width="140" height="766" id="Documentation" order="4" sideWeight="0.50481695" side_tool="true" visible="true" weight="0.09127517" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49408284" visible="true" weight="0.10802274" />
+      <window_info anchor="right" x="0" y="0" width="140" height="766" id="Documentation" order="4" sideWeight="0.50591713" side_tool="true" visible="true" weight="0.10802274" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.4992" weight="0.3298969" />
     </layout>
   </component>
@@ -346,7 +377,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state>
           <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
         </state>
       </provider>
@@ -358,19 +389,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OneLayerNN.py">
+    <entry file="file://$PROJECT_DIR$/MNIST_SVC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+        <state relative-caret-position="99">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MNIST_SVC.py">
+    <entry file="file://$PROJECT_DIR$/MNIST_NN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        <state relative-caret-position="557">
+          <caret line="37" column="32" lean-forward="true" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#32#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OneLayerNN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="43" column="35" lean-forward="true" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/MNIST_NN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+          <folding>
+            <element signature="e#67#78#0" expanded="true" />
           </folding>
         </state>
       </provider>
