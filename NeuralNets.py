@@ -8,7 +8,7 @@ import random
 from mnist import MNIST
 from sklearn import preprocessing
 import numpy as np
-
+import MNIST_Process as MP
 
 
 class NeuralNet:
@@ -200,34 +200,43 @@ class NeuralNet:
 
 #%%
 
-mndataSet = '.\Dataset'
-print('Loading and processing Data')
-mndata = MNIST()
-#mndata.gz =True
-mndata = MNIST(mndataSet)
+#%% Loading the traing data from the MNIST dataset.
 print('Loading training')
-images,labels = mndata.load_training()
-#images_test, labels_test = mndata.load_testing()
+images_train,labels_train = MP.loadTrain()
+images_test, labels_test = MP.loadTest() # Current implementation in MP script reloads the data, wasted effort. Not using test right now, fix later.
 
-#Transform the labels into from single digit to a 10-arry binary vector aka One-hot-matrix
-labels = np.transpose(np.reshape(labels,(-1,len(labels))))
-encoder = preprocessing.OneHotEncoder()
-encoder.fit(labels)
-oneHotLabels = encoder.transform(labels).toarray()
+#reshape the labels to nx1 vector before changing it to one hot matrix
+labels_train = np.transpose(np.reshape(labels_train,(-1,len(labels_train))))
 
-#%%
-samples = []
-n_training=labels.shape[0]
-for i in range(0,labels.shape[0]):
-	samples.append([images[i],oneHotLabels[i]])
+#Change labels to a matrix where each sample has 10 output values representing the single value decimal number. R_1 --> R_10
+oneHotLabels = MP.OneHotTransform(labels_train)
 
-#%%
-inputSize = len(images[0])
+#%% Turn images and labels into sample frame that network expects
+samples = MP.getSamples(np.array(images_train),oneHotLabels)
+
+#%%Get the input/output size , initialize neural network
+inputSize = len(images_train[0])
 outputSize = len(oneHotLabels[0])
 a = NeuralNet([inputSize,30,outputSize])
-#%%
-#a = NeuralNet([3,30,2])
 
+
+#%%
+epoch_number = 10
+step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
+a.SDG(samples, step_size, epoch_number)
+'''
+TODO Determine the magnitude of the weights
+'''
+
+#%% Evaluate NN on the training, Transform the output for each for a sample by method max2One or naiveBinary
+print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
+#print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
+
+#%%
+'''
+#sample code used to test NN
+
+#a = NeuralNet([3,30,2])
 sample_1 = [
 [[0,0,0],[0,0]],
 [[0,0,1],[0,1]],
@@ -238,18 +247,9 @@ sample_1 = [
 [[1,0,1],[1,0]],
 [[1,1,1],[1,1]]
 ]
-#a.SDG(sample_l, 1, 10000)
-
-#%%
-
-a.SDG(samples, 1, 10000)
-
-#%%
-#b = a.evaluate([1,1,1])
 #a.printLayers()
+
+#a.SDG(sample_l, 1, 10000)
+#b = a.evaluate([1,1,1])
 #print(a.errorCalculate(sample_l, a.naiveBinary)) # achieves the training error to be 0.0
-print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
-#print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
-
-
-
+'''
