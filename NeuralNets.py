@@ -139,7 +139,26 @@ class NeuralNet:
 		
 		# Gradient Decent
 		self.updateWeights(l_step)
-	
+
+	'''
+	Generate the Magnitude of the weights at each layer for each neuron. 
+	'''
+	def getMagWeights(self):
+
+		magWeights = []
+		magWeights.append([0])  # first layer has no connecting weights, place holder of 0 is added to array.
+		for i in range(1, self._layer):
+			j = 1
+			layersMagWeights = []
+			for neuron in self.nets[i]:
+				# neuron['weights']
+				magWeight = vectorMagnitude(np.array(neuron['weights']))
+				print(j, ' ', magWeight)
+				layersMagWeights.append(magWeight)
+				# print(j)
+				j += 1
+			magWeights.append(layersMagWeights)
+		return(magWeights)
 	
 	def isMatch(self, a, b):
 		if len(a) != len(b):
@@ -198,7 +217,10 @@ class NeuralNet:
 			train = random.sample(train_l,1)[0]
 			self.gradientDecent(train, l_step)
 
-#%%
+
+def vectorMagnitude(V):
+	return(math.sqrt(sum(i**2 for i in V)))
+
 
 #%% Loading the traing data from the MNIST dataset.
 print('Loading training')
@@ -224,12 +246,16 @@ a = NeuralNet([inputSize,30,outputSize])
 epoch_number = 10
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 a.SDG(samples, step_size, epoch_number)
+
+#%% Gets the magnitude of the weights at each layer for each neuron
+
+magWeights = a.getMagWeights()
 '''
 TODO Determine the magnitude of the weights
 '''
 
 #%% Evaluate NN on the training, Transform the output for each for a sample by method max2One or naiveBinary
-print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
+print(a.errorCalculate(samples[0:10], a.max2one)) # achieves the training error to be 0.0
 #print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
 
 #%%
@@ -253,3 +279,6 @@ sample_1 = [
 #b = a.evaluate([1,1,1])
 #print(a.errorCalculate(sample_l, a.naiveBinary)) # achieves the training error to be 0.0
 '''
+#%%
+
+
