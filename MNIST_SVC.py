@@ -22,11 +22,11 @@ images,labels = mndata.load_training()
 images_test, labels_test = mndata.load_testing()
 #%%
 print("Partition train")
-xtrain = images#[0:10000]
-xlabels = labels#[0:10000]
+xtrain = images[0:int(len(images)/2)]
+xlabels = labels[0:int((len(labels)/2))]
 print('building....')
 c = [.25,.5,1,2,4]
-model = SVC(C = 5,gamma = 0.05, kernel = 'linear')
+model = SVC(C = 5,gamma = 0.001, kernel = 'linear')
 model.fit(xtrain, xlabels)
 y_hat = model.predict(xtrain)
 

@@ -32,7 +32,7 @@ class NeuralNet:
 	# Build a new neural
 	def newNeural(self, Father):
 		data = {}
-		data.update({'weights':[random.uniform(-1,1) for i in range(len(Father))]})
+		data.update({'weights':[random.uniform(-0.5,0.5) for i in range(len(Father))]})
 		data.update({'derivative':[0]*len(Father)})
 		data.update({'father': Father})
 		data.update({'value': 0})
@@ -109,7 +109,7 @@ class NeuralNet:
 			for n in range(len(layer)):
 				neural = layer[n]
 				pre_neural = self.nets[index+1]
-				const, temp = (1-neural['value']), 0
+				const, temp = (1-neural['value'])*(neural['value']), 0
 				for pre_n in pre_neural:
 					temp += pre_n['weights'][n]*pre_n['derivative'][n]
 				const *= temp
@@ -170,9 +170,9 @@ class NeuralNet:
 
 	# simple binarilization
 	def naiveBinary(self, a):
-		print('len a ',a)
+		#print('len a ',a)
 		for i in range(len(a)):
-			print(a[i])
+			#print(a[i])
 			if a[i] > 0.5:
 				a[i] = 1
 			else:
@@ -180,7 +180,7 @@ class NeuralNet:
 		return a
 
 	
-	# binarilize the maximum value to be 1 and others to be zeros
+	# take ouput and change  the maximum value to be 1 and others to be zeros
 	def max2one(self, a):
 		index = 0
 		for i in range(len(a)):
@@ -200,10 +200,10 @@ class NeuralNet:
 		err = 0
 		for i in sample_l:
 			b = trim(self.evaluate(i[0]))
-			#print(b)
+			#print(b,i[1],self.isMatch(b,i[1]))
 			if not self.isMatch(b,i[1]):
 				err += 1
-		return err / len(sample_l)
+		return float(err) / len(sample_l)
 		
 	''' Stochastic gradient decent with training sample list 
 		'tain_l', the gradient decent step length 'l_step', 
@@ -211,12 +211,32 @@ class NeuralNet:
 	'''
 	def SDG(self, train_l, l_step, n_epoch):
 		for i in range(n_epoch):
-			if i%500==0:
-				print('Running epoch ', i)
+			random.shuffle(train_1)
+			#train = random.sample(train_l, 1)[0]
+			j=0
+			for train in train_1:
 
-			train = random.sample(train_l,1)[0]
-			self.gradientDecent(train, l_step)
-
+				if j%500==0:
+					print('Running epoch ', i,j)
+				j+=1
+				self.gradientDecent(train, l_step)
+	''''
+	SGD that takes training samples, step_size, and desired error.
+	'''
+	def SDG1(self, train_l, l_step, err):
+		ac_err, epoch = 1, 0
+		while (ac_err > err):
+			random.shuffle(train_l)
+			j = 0
+			for train in train_l:
+				if j % 500 == 0:
+					print('Running epoch ', epoch, j)
+				j += 1
+				self.gradientDecent(train, l_step)
+			test = random.sample(train_l, 100)
+			ac_err = self.errorCalculate(test, self.max2one)
+			print(ac_err, epoch)
+			epoch += 1
 
 def vectorMagnitude(V):
 	return(math.sqrt(sum(i**2 for i in V)))
@@ -246,6 +266,7 @@ a = NeuralNet([inputSize,30,outputSize])
 epoch_number = 10
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 a.SDG(samples, step_size, epoch_number)
+#a.SDG1(samples[:len(samples)/4], 0.005, 0.3)
 
 #%% Gets the magnitude of the weights at each layer for each neuron
 
