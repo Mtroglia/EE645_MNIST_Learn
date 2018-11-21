@@ -19,6 +19,7 @@ class NeuralNet:
 	the input layer and the last is output layer.
 	'''
 	def __init__(self, Layer):
+
 		self._layer = len(Layer)
 		self.nets, Father = [], []
 		for i in range(self._layer):
@@ -209,7 +210,7 @@ class NeuralNet:
 		'tain_l', the gradient decent step length 'l_step', 
 		the maximum epoch in training.
 	'''
-	def SDG(self, train_l, l_step, n_epoch):
+	def SDG(self, train_1, l_step, n_epoch):
 		for i in range(n_epoch):
 			random.shuffle(train_1)
 			#train = random.sample(train_l, 1)[0]
