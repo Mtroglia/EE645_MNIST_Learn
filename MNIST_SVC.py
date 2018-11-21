@@ -26,7 +26,7 @@ xtrain = images#[0:10000]
 xlabels = labels#[0:10000]
 print('building....')
 c = [.25,.5,1,2,4]
-model = SVC(C = 1, kernel = 'linear')
+model = SVC(C = 5,gamma = 0.05, kernel = 'linear')
 model.fit(xtrain, xlabels)
 y_hat = model.predict(xtrain)
 
@@ -50,6 +50,7 @@ print(train_error)
 '''
 
 #%%
+print("Running Test...")
 y_hat_test =  model.predict(images_test)
 accuracyTest= accuracy_score(np.array(labels_test), y_hat_test)
 print("Test accuracy " , accuracyTest)
