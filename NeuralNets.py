@@ -9,7 +9,8 @@ from mnist import MNIST
 from sklearn import preprocessing
 import numpy as np
 import MNIST_Process as MP
-
+import pickle
+from datetime import datetime
 
 class NeuralNet:
 
@@ -153,7 +154,7 @@ class NeuralNet:
 			for neuron in self.nets[i]:
 				# neuron['weights']
 				magWeight = vectorMagnitude(np.array(neuron['weights']))
-				print(j, ' ', magWeight)
+				#print(j, ' ', magWeight)
 				layersMagWeights.append(magWeight)
 				# print(j)
 				j += 1
@@ -233,8 +234,9 @@ class NeuralNet:
 					print('Running epoch ', epoch, j)
 				j += 1
 				self.gradientDecent(train, l_step)
-			test = random.sample(train_l, 100)
+			test = random.sample(train_l, 1000)
 			ac_err = self.errorCalculate(test, self.max2one)
+			print("Acc Error, epoch")
 			print(ac_err, epoch)
 			epoch += 1
 
@@ -247,15 +249,22 @@ print('Loading training')
 images_train,labels_train = MP.loadTrain()
 images_test, labels_test = MP.loadTest() # Current implementation in MP script reloads the data, wasted effort. Not using test right now, fix later.
 
+#%%normalized pixel data
+images_train,images_test = np.array(images_train)/255, np.array(images_test)/255
+
 #reshape the labels to nx1 vector before changing it to one hot matrix
-labels_train = np.transpose(np.reshape(labels_train,(-1,len(labels_train))))
+labels_train,labels_test = np.transpose(np.reshape(labels_train,(-1,len(labels_train)))), np.transpose(np.reshape(labels_test,(-1,len(labels_test))))
 
 #Change labels to a matrix where each sample has 10 output values representing the single value decimal number. R_1 --> R_10
 oneHotLabels = MP.OneHotTransform(labels_train)
 
+oneHotLabels_Test = MP.OneHotTransform((labels_test))
+
+
 #%% Turn images and labels into sample frame that network expects
 samples = MP.getSamples(np.array(images_train),oneHotLabels)
 
+samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 #%%Get the input/output size , initialize neural network
 inputSize = len(images_train[0])
 outputSize = len(oneHotLabels[0])
@@ -263,10 +272,10 @@ a = NeuralNet([inputSize,30,outputSize])
 
 
 #%%
-epoch_number = 10
+epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
-a.SDG(samples, step_size, epoch_number)
-#a.SDG1(samples[:len(samples)/4], 0.005, 0.3)
+#a.SDG(samples, step_size, epoch_number)
+a.SDG1(samples, 0.05, 0.04)
 
 #%% Gets the magnitude of the weights at each layer for each neuron
 
@@ -276,9 +285,11 @@ TODO Determine the magnitude of the weights
 '''
 
 #%% Evaluate NN on the training, Transform the output for each for a sample by method max2One or naiveBinary
-print(a.errorCalculate(samples[0:10], a.max2one)) # achieves the training error to be 0.0
+print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
+print(a.errorCalculate(samples_Test,a.max2one))
 #print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
-
+fileSave='NN_savedModel_'+str(datetime.timestamp(datetime.now()))+'.sav'
+pickle.dump(a,open(fileSave,'wb'))
 #%%
 '''
 #sample code used to test NN
@@ -301,5 +312,10 @@ sample_1 = [
 #print(a.errorCalculate(sample_l, a.naiveBinary)) # achieves the training error to be 0.0
 '''
 #%%
-
-
+'''
+#Load a pickled model
+loadFileName= 'NN_saveModel_TrainErr0425_TestErr_0509.sav'
+loaded_NN = pickle.load(open(loadFileName,'rb'))
+print('Testing Loaded Model')
+print(loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one))
+'''
