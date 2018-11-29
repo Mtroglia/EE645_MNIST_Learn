@@ -250,9 +250,13 @@ print('Loading training')
 images_train,labels_train = MP.loadTrain()
 images_test, labels_test = MP.loadTest() # Current implementation in MP script reloads the data, wasted effort. Not using test right now, fix later.
 
+<<<<<<< Updated upstream
 #%%normalized pixel data
 images_train,images_test = np.array(images_train)/255, np.array(images_test)/255
 
+=======
+images_train,images_test=  images_train /255.0 ,images_test/255.0
+>>>>>>> Stashed changes
 #reshape the labels to nx1 vector before changing it to one hot matrix
 labels_train,labels_test = np.transpose(np.reshape(labels_train,(-1,len(labels_train)))), np.transpose(np.reshape(labels_test,(-1,len(labels_test))))
 

@@ -1,5 +1,6 @@
 from mnist import MNIST
 from sklearn import preprocessing
+import numpy as np
 
 def loadTrain():
     mndataSet = 'Dataset'
@@ -7,7 +8,7 @@ def loadTrain():
     #mndata.gz =True
     mndata = MNIST(mndataSet)
     images,labels = mndata.load_training()
-    return(images,labels)
+    return(np.array(images),np.array(labels))
 
 def loadTest():
     mndataSet = 'Dataset'
@@ -15,7 +16,7 @@ def loadTest():
     #mndata.gz =True
     mndata = MNIST(mndataSet)
     images_test, labels_test = mndata.load_testing()
-    return(images_test,labels_test)
+    return(np.array(images_test),np.array(labels_test))
 
 
 def OneHotTransform(input):
