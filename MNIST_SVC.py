@@ -20,9 +20,12 @@ mndata = MNIST(mndataSet)
 print("loading images....")
 images,labels = mndata.load_training()
 images_test, labels_test = mndata.load_testing()
+#normalize test
+images_test = np.array(images_test)/255.0
 #%%
-print("Partition train")
-xtrain = images[0:int(len(images)/2)]
+xtrain = np.array(images)
+#normalize
+xtrain = xtrain/255.0
 xlabels = labels[0:int((len(labels)/2))]
 print('building....')
 c = [.25,.5,1,2,4]
