@@ -36,6 +36,7 @@ class NeuralNet:
 	def newNeural(self, Father):
 		data = {}
 		data.update({'weights':[random.uniform(-0.5,0.5) for i in range(len(Father))]})
+		#data.update({'weights': [random.normal(0,1/(math.sqrt(len(self.nets[0])))) for i in range(len(Father))]})
 		data.update({'derivative':[0]*len(Father)})
 		data.update({'father': Father})
 		data.update({'value': 0})
@@ -102,14 +103,14 @@ class NeuralNet:
 		# Last layer
 		layer = self.nets[self._layer-1]
 		for i in range(len(layer)):
-			if self.regularization == 'none':
-				#deriv of sigmoid activation times loss (output-true_label)Output(1-output))
-				const = 2*(layer[i]['value'] - trueLabel[i])*layer[i]['value']*(1-layer[i]['value'])
-			if self.regularization == 'ridge':
-				const = 2 * (layer[i]['value'] - trueLabel[i]) * layer[i]['value'] * (1 - layer[i]['value'])+0.03* sum(self.getMagWeights()[self._layer-1])
+			#deriv of sigmoid activation times loss (output-true_label)Output(1-output))
+			const = 2*(layer[i]['value'] - trueLabel[i])*layer[i]['value']*(1-layer[i]['value'])
 			for j in range(len(layer[i]['derivative'])):
-				layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']
-		
+				if self.regularization == 'none':
+					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']
+				if self.regularization == 'ridge':
+					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+0.03*layer[i]['weights'][j]
+
 		# Internal layers
 		for k in range(2, self._layer):
 			index = self._layer - k
@@ -288,11 +289,11 @@ a = NeuralNet([inputSize,30,outputSize],'ridge')
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
-a.SGD_TrainThreshold(samples, 0.05, 0.20)
+a.SGD_TrainThreshold(samples[0:2000], 0.05, .06)
 #a.SGD_Ridge_TrainThreshold(samples, 0.05, 0.04)
 
 
-a.SGD
+#a.SGD
 
 #%% Gets the magnitude of the weights at each layer for each neuron
 
