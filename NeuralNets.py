@@ -19,9 +19,10 @@ class NeuralNet:
 	the number of neurals in each layer, the first layer is
 	the input layer and the last is output layer.
 	'''
-	def __init__(self, Layer):
+	def __init__(self, Layer,reg):
 
 		self._layer = len(Layer)
+		self.regularization =reg
 		self.nets, Father = [], []
 		for i in range(self._layer):
 			current_layer = []
@@ -38,6 +39,7 @@ class NeuralNet:
 		data.update({'derivative':[0]*len(Father)})
 		data.update({'father': Father})
 		data.update({'value': 0})
+
 		return data
 		
 	# We use sigmoid function as activation function
@@ -100,7 +102,11 @@ class NeuralNet:
 		# Last layer
 		layer = self.nets[self._layer-1]
 		for i in range(len(layer)):
-			const = 2*(layer[i]['value'] - trueLabel[i])*layer[i]['value']*(1-layer[i]['value'])
+			if self.regularization == 'none':
+				#deriv of sigmoid activation times loss (output-true_label)Output(1-output))
+				const = 2*(layer[i]['value'] - trueLabel[i])*layer[i]['value']*(1-layer[i]['value'])
+			if self.regularization == 'ridge':
+				const = 2 * (layer[i]['value'] - trueLabel[i]) * layer[i]['value'] * (1 - layer[i]['value'])+0.03* sum(self.getMagWeights()[self._layer-1])
 			for j in range(len(layer[i]['derivative'])):
 				layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']
 		
@@ -111,6 +117,7 @@ class NeuralNet:
 			for n in range(len(layer)):
 				neural = layer[n]
 				pre_neural = self.nets[index+1]
+				#derivative of sigmoid funciton const
 				const, temp = (1-neural['value'])*(neural['value']), 0
 				for pre_n in pre_neural:
 					temp += pre_n['weights'][n]*pre_n['derivative'][n]
@@ -211,7 +218,7 @@ class NeuralNet:
 		'tain_l', the gradient decent step length 'l_step', 
 		the maximum epoch in training.
 	'''
-	def SDG(self, train_1, l_step, n_epoch):
+	def SGD(self, train_1, l_step, n_epoch):
 		for i in range(n_epoch):
 			random.shuffle(train_1)
 			#train = random.sample(train_l, 1)[0]
@@ -225,7 +232,7 @@ class NeuralNet:
 	''''
 	SGD that takes training samples, step_size, and desired error.
 	'''
-	def SDG1(self, train_l, l_step, err):
+	def SGD_TrainThreshold(self, train_l, l_step, err):
 		ac_err, epoch = 1, 0
 		while (ac_err > err):
 			random.shuffle(train_l)
@@ -241,6 +248,8 @@ class NeuralNet:
 			print(ac_err, epoch)
 			epoch += 1
 
+
+
 def vectorMagnitude(V):
 	return(math.sqrt(sum(i**2 for i in V)))
 
@@ -250,13 +259,10 @@ print('Loading training')
 images_train,labels_train = MP.loadTrain()
 images_test, labels_test = MP.loadTest() # Current implementation in MP script reloads the data, wasted effort. Not using test right now, fix later.
 
-<<<<<<< Updated upstream
 #%%normalized pixel data
 images_train,images_test = np.array(images_train)/255, np.array(images_test)/255
 
-=======
-images_train,images_test=  images_train /255.0 ,images_test/255.0
->>>>>>> Stashed changes
+
 #reshape the labels to nx1 vector before changing it to one hot matrix
 labels_train,labels_test = np.transpose(np.reshape(labels_train,(-1,len(labels_train)))), np.transpose(np.reshape(labels_test,(-1,len(labels_test))))
 
@@ -273,14 +279,20 @@ samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 #%%Get the input/output size , initialize neural network
 inputSize = len(images_train[0])
 outputSize = len(oneHotLabels[0])
-a = NeuralNet([inputSize,30,outputSize])
+#a = NeuralNet([inputSize,30,outputSize],'none')
+a = NeuralNet([inputSize,30,outputSize],'ridge')
+
 
 
 #%%
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
-#a.SDG(samples, step_size, epoch_number)
-a.SDG1(samples, 0.05, 0.04)
+#a.SGD(samples, step_size, epoch_number)
+a.SGD_TrainThreshold(samples, 0.05, 0.20)
+#a.SGD_Ridge_TrainThreshold(samples, 0.05, 0.04)
+
+
+a.SGD
 
 #%% Gets the magnitude of the weights at each layer for each neuron
 
