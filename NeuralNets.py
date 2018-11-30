@@ -35,8 +35,8 @@ class NeuralNet:
 	# Build a new neural
 	def newNeural(self, Father):
 		data = {}
-		data.update({'weights':[random.uniform(-0.5,0.5) for i in range(len(Father))]})
-		#data.update({'weights': [random.normal(0,1/(math.sqrt(len(self.nets[0])))) for i in range(len(Father))]})
+		#data.update({'weights':[random.uniform(-0.5,0.5) for i in range(len(Father))]})
+		data.update({'weights': [np.random.normal(0,1/(math.sqrt(len(self.nets[0])))) for i in range(len(Father))]})
 		data.update({'derivative':[0]*len(Father)})
 		data.update({'father': Father})
 		data.update({'value': 0})
@@ -240,7 +240,7 @@ class NeuralNet:
 			j = 0
 			for train in train_l:
 				if j % 500 == 0:
-					print('Running epoch ', epoch, j)
+					print('Running epoch ', epoch,' Sample No. ', j)
 				j += 1
 				self.gradientDecent(train, l_step)
 			test = random.sample(train_l, 1000)
@@ -262,7 +262,6 @@ images_test, labels_test = MP.loadTest() # Current implementation in MP script r
 
 #%%normalized pixel data
 images_train,images_test = np.array(images_train)/255, np.array(images_test)/255
-
 
 #reshape the labels to nx1 vector before changing it to one hot matrix
 labels_train,labels_test = np.transpose(np.reshape(labels_train,(-1,len(labels_train)))), np.transpose(np.reshape(labels_test,(-1,len(labels_test))))
@@ -289,11 +288,8 @@ a = NeuralNet([inputSize,30,outputSize],'ridge')
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
-a.SGD_TrainThreshold(samples[0:2000], 0.05, .06)
-#a.SGD_Ridge_TrainThreshold(samples, 0.05, 0.04)
+a.SGD_TrainThreshold(samples, 0.05, .06)
 
-
-#a.SGD
 
 #%% Gets the magnitude of the weights at each layer for each neuron
 
@@ -303,11 +299,24 @@ TODO Determine the magnitude of the weights
 '''
 
 #%% Evaluate NN on the training, Transform the output for each for a sample by method max2One or naiveBinary
-print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
-print(a.errorCalculate(samples_Test,a.max2one))
+#print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
+
+#print(a.errorCalculate(samples_Test,a.max2one))
 #print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
-fileSave='NN_savedModel_'+str(datetime.timestamp(datetime.now()))+'.sav'
-pickle.dump(a,open(fileSave,'wb'))
+
+
+#fileSave='NN_savedModel_'+str(datetime.timestamp(datetime.now()))+'.sav'
+#pickle.dump(a,open(fileSave,'wb'))
+
+#%%
+'''
+#Load a pickled model
+loadFileName= 'NN_saveModel_TrainErr0425_TestErr_0509.sav'
+loaded_NN = pickle.load(open(loadFileName,'rb'))
+print('Testing Loaded Model')
+print(loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one))
+'''
+
 #%%
 '''
 #sample code used to test NN
@@ -328,12 +337,4 @@ sample_1 = [
 #a.SDG(sample_l, 1, 10000)
 #b = a.evaluate([1,1,1])
 #print(a.errorCalculate(sample_l, a.naiveBinary)) # achieves the training error to be 0.0
-'''
-#%%
-'''
-#Load a pickled model
-loadFileName= 'NN_saveModel_TrainErr0425_TestErr_0509.sav'
-loaded_NN = pickle.load(open(loadFileName,'rb'))
-print('Testing Loaded Model')
-print(loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one))
 '''
