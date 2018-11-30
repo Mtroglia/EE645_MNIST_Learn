@@ -11,6 +11,7 @@ import numpy as np
 import MNIST_Process as MP
 import pickle
 from datetime import datetime
+import os
 
 class NeuralNet:
 
@@ -305,8 +306,8 @@ TODO Determine the magnitude of the weights
 #print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
 
 
-#fileSave='NN_savedModel_'+str(datetime.timestamp(datetime.now()))+'.sav'
-#pickle.dump(a,open(fileSave,'wb'))
+fileSave='SavedModel'+os.sep+'NN_savedModel_'+str(datetime.timestamp(datetime.now())).replace('.','')+'.sav'
+pickle.dump(a,open(fileSave,'wb'))
 
 #%%
 '''
