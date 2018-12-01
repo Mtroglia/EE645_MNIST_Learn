@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8667822-59ea-43ce-a732-ad12432c53df" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/MNIST_NN_LoadNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/MNIST_NN_LoadNetwork.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NN_saveModel_TrainErr0425_TestErr_0509.sav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NN_savedModel_1543476139.346608.sav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NN_savedModel_1543560290.192198.sav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NN_savedModel_1543562141.53506.sav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MNIST_SVC.py" beforeDir="false" afterPath="$PROJECT_DIR$/MNIST_SVC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NeuralNets.py" beforeDir="false" afterPath="$PROJECT_DIR$/NeuralNets.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,6 +73,25 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1342431935">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.24" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="MNIST_SVC" value="139" />
+          <entry key="py" value="122" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="261" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -92,10 +108,7 @@
         <entry file="file://$PROJECT_DIR$/MNIST_Process.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -103,8 +116,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MNIST_SVC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-113">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="276">
+              <caret line="62" column="13" selection-start-line="62" selection-end-line="62" selection-end-column="38" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -115,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NeuralNets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="292" lean-forward="true" selection-start-line="292" selection-end-line="292" />
+            <state relative-caret-position="119">
+              <caret line="297" column="3" lean-forward="true" selection-start-line="297" selection-start-column="3" selection-end-line="297" selection-end-column="3" />
               <folding>
                 <element signature="e#67#78#0" expanded="true" />
               </folding>
@@ -127,11 +140,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MNIST_NN_LoadNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="e#67#78#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-3162">
+              <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -165,12 +175,12 @@
       <list>
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/MNIST_NN.py" />
-        <option value="$PROJECT_DIR$/MNIST_SVC.py" />
         <option value="$PROJECT_DIR$/MNIST_Process.py" />
         <option value="$PROJECT_DIR$/OneLayerNN.py" />
         <option value="$USER_HOME$/Downloads/MNIST_NN.py" />
-        <option value="$PROJECT_DIR$/NeuralNets.py" />
         <option value="$PROJECT_DIR$/MNIST_NN_LoadNetwork.py" />
+        <option value="$PROJECT_DIR$/NeuralNets.py" />
+        <option value="$PROJECT_DIR$/MNIST_SVC.py" />
       </list>
     </option>
   </component>
@@ -181,10 +191,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1926" />
-    <option name="y" value="-258" />
-    <option name="width" value="1287" />
-    <option name="height" value="1166" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1591" />
+    <option name="height" value="929" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -197,8 +207,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="MNIST_Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MNIST_Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="EE645_MNIST_Learn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE645_MNIST_Learn" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -225,11 +235,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.MNIST_NN">
+  <component name="RunManager" selected="Python.MNIST_SVC">
     <configuration name="MNIST_NN (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="MNIST_Learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -252,9 +265,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\TROG\PycharmProjects\EE645_MNIST_Learn\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -271,12 +284,9 @@
       <module name="MNIST_Learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\TROG\PycharmProjects\EE645_MNIST_Learn\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -293,9 +303,9 @@
       <module name="MNIST_Learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\TROG\PycharmProjects\EE645_MNIST_Learn\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -361,9 +371,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.MNIST_NN (1)" />
-        <item itemvalue="Python.NeuralNets" />
         <item itemvalue="Python.MNIST_SVC" />
+        <item itemvalue="Python.NeuralNets" />
+        <item itemvalue="Python.MNIST_NN (1)" />
         <item itemvalue="Python.MNIST_NN" />
         <item itemvalue="Python.OneLayerNN" />
       </list>
@@ -392,10 +402,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1926" y="-258" width="1287" height="1166" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1591" height="929" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31377342" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.087524496" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -410,11 +419,11 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3290735" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.40464666" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.4301887" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.48455286" visible="true" weight="0.0798696" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.48455286" visible="true" weight="0.06401045" />
       <window_info anchor="right" x="0" y="0" width="140" height="766" id="Documentation" order="4" sideWeight="0.51544714" side_tool="true" visible="true" weight="0.0798696" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.4992" weight="0.3298969" />
     </layout>
@@ -427,8 +436,14 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/MNIST_NN.py" />
-    <entry file="file://$PROJECT_DIR$/../ParrotAnalysisTools/Parrot_Scapy_Import.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/../ParrotAnalysisTools/Parrot_Scapy_Import.py" />
+    <entry file="file://$USER_HOME$/Downloads/MNIST_NN.py" />
+    <entry file="file://$PROJECT_DIR$/OneLayerNN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -440,37 +455,14 @@
     <entry file="file://$PROJECT_DIR$/MNIST_Process.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/MNIST_NN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="281" column="40" selection-start-line="281" selection-start-column="40" selection-end-line="281" selection-end-column="40" />
-          <folding>
-            <element signature="e#67#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OneLayerNN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-          <folding>
-            <element signature="e#67#78#0" expanded="true" />
-          </folding>
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MNIST_SVC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-113">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="276">
+          <caret line="62" column="13" selection-start-line="62" selection-end-line="62" selection-end-column="38" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
@@ -479,8 +471,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NeuralNets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="292" lean-forward="true" selection-start-line="292" selection-end-line="292" />
+        <state relative-caret-position="119">
+          <caret line="297" column="3" lean-forward="true" selection-start-line="297" selection-start-column="3" selection-end-line="297" selection-end-column="3" />
           <folding>
             <element signature="e#67#78#0" expanded="true" />
           </folding>
@@ -489,11 +481,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MNIST_NN_LoadNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#67#78#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-3162">
+          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
         </state>
       </provider>
     </entry>

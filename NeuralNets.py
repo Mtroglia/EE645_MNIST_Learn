@@ -289,7 +289,7 @@ a = NeuralNet([inputSize,30,outputSize],'ridge')
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
-a.SGD_TrainThreshold(samples, 0.05, .06)
+a.SGD_TrainThreshold(samples, 0.05, .045)
 
 
 #%% Gets the magnitude of the weights at each layer for each neuron
@@ -302,8 +302,8 @@ TODO Determine the magnitude of the weights
 #%% Evaluate NN on the training, Transform the output for each for a sample by method max2One or naiveBinary
 #print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
 
-#print(a.errorCalculate(samples_Test,a.max2one))
-#print(a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
+print('Test error: ',a.errorCalculate(samples_Test,a.max2one))
+print('Train error: ',a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
 
 
 fileSave='SavedModel'+os.sep+'NN_savedModel_'+str(datetime.timestamp(datetime.now())).replace('.','')+'.sav'
