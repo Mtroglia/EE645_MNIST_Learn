@@ -283,7 +283,7 @@ samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 #%% Evaluate NN on the training and Test, Transform the output for each for a sample by method max2One or naiveBinary
 
 #Load a pickled model
-loadFileName= 'SavedModels'+os.sep+'NN_saveModel_TrainErr0425_TestErr_0509.sav'
+loadFileName= 'SavedModels'+os.sep+'NN_saveModel_EXAMPLE.sav'
 loaded_NN = pickle.load(open(loadFileName,'rb'))
 print('Testing Loaded Model')
 print(loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one))
