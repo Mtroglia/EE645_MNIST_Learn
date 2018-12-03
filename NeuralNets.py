@@ -104,7 +104,7 @@ class NeuralNet:
 		# Last layer
 		layer = self.nets[self._layer-1]
 		for i in range(len(layer)):
-			#deriv of sigmoid activation times loss (output-true_label)Output(1-output))
+			#deriv of sigmoid activation times loss (output-true_label)Output(1-output)) The back propagating error
 			const = 2*(layer[i]['value'] - trueLabel[i])*layer[i]['value']*(1-layer[i]['value'])
 			for j in range(len(layer[i]['derivative'])):
 				if self.regularization == 'none':
@@ -121,11 +121,15 @@ class NeuralNet:
 				pre_neural = self.nets[index+1]
 				#derivative of sigmoid funciton const
 				const, temp = (1-neural['value'])*(neural['value']), 0
+				#neurons in prev layer
 				for pre_n in pre_neural:
 					temp += pre_n['weights'][n]*pre_n['derivative'][n]
 				const *= temp
 				for t in range(len(neural['derivative'])):
 					neural['derivative'][t] = const*neural['father'][t]['value']
+					#We add the weight value here as well for ridge???
+					#neural['derivative'][t] = const*neural['father'][t]['value']+.03*neural['weights'][t]
+
 	
 	# Update weigth according to derivatives
 	def updateWeights(self, l_step):
@@ -289,7 +293,8 @@ a = NeuralNet([inputSize,30,outputSize],'ridge')
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
-a.SGD_TrainThreshold(samples, 0.05, .045)
+#a.SGD_TrainThreshold(samples, 0.05, .045)
+a.SGD_TrainThreshold(samples[0:2000], 0.05, .045)
 
 
 #%% Gets the magnitude of the weights at each layer for each neuron
