@@ -209,11 +209,14 @@ class NeuralNet:
 	def errorCalculate(self, sample_l, trim):
 		print('Calc error...')
 		err = 0
+		j=0
 		for i in sample_l:
 			b = trim(self.evaluate(i[0]))
 			#print(b,i[1],self.isMatch(b,i[1]))
 			if not self.isMatch(b,i[1]):
 				err += 1
+				#print('Misclass sample No.',j)
+			j+=1
 		return float(err) / len(sample_l)
 
 	def singleErrorCalculate(self, sample_l, trim):
@@ -300,7 +303,7 @@ loaded_NN = pickle.load(open(loadFileName,'rb'))
 print('Testing Loaded Model')
 
 #%% Choose a single sample number below to see if it correctly classifies
-print(loaded_NN.singleErrorCalculate(samples_Test[367],loaded_NN.max2one))
+print(loaded_NN.singleErrorCalculate(samples_Test[8],loaded_NN.max2one))
 
 #Get error% of entire test set
 #print(loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one))
