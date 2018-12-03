@@ -110,7 +110,7 @@ class NeuralNet:
 				if self.regularization == 'none':
 					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']
 				if self.regularization == 'ridge':
-					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+0.03*layer[i]['weights'][j]
+					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+0.001*layer[i]['weights'][j]
 
 		# Internal layers
 		for k in range(2, self._layer):
@@ -281,7 +281,7 @@ samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 inputSize = len(images_train[0])
 outputSize = len(oneHotLabels[0])
 #a = NeuralNet([inputSize,30,outputSize],'none')
-a = NeuralNet([inputSize,30,outputSize],'ridge')
+a = NeuralNet([inputSize,30,outputSize],'none')
 
 
 
@@ -289,7 +289,7 @@ a = NeuralNet([inputSize,30,outputSize],'ridge')
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
-a.SGD_TrainThreshold(samples, 0.05, .045)
+a.SGD_TrainThreshold(samples, 0.005, .045)
 
 
 #%% Gets the magnitude of the weights at each layer for each neuron
