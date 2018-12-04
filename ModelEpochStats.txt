@@ -1,0 +1,1 @@
+SavedModels\NN_savedModel_1543959286523756_epoch0.sav Epoch 0 Train Error 0.801
