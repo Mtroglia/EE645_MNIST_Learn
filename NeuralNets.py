@@ -104,13 +104,13 @@ class NeuralNet:
 		# Last layer
 		layer = self.nets[self._layer-1]
 		for i in range(len(layer)):
-			#deriv of sigmoid activation times loss (output-true_label)Output(1-output))
+			#deriv of sigmoid activation times loss (output-true_label)Output(1-output)) The back propagating error
 			const = 2*(layer[i]['value'] - trueLabel[i])*layer[i]['value']*(1-layer[i]['value'])
 			for j in range(len(layer[i]['derivative'])):
 				if self.regularization == 'none':
 					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']
 				if self.regularization == 'ridge':
-					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+0.001*layer[i]['weights'][j]
+					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+0.00001*layer[i]['weights'][j]
 
 		# Internal layers
 		for k in range(2, self._layer):
@@ -121,11 +121,15 @@ class NeuralNet:
 				pre_neural = self.nets[index+1]
 				#derivative of sigmoid funciton const
 				const, temp = (1-neural['value'])*(neural['value']), 0
+				#neurons in prev layer
 				for pre_n in pre_neural:
 					temp += pre_n['weights'][n]*pre_n['derivative'][n]
 				const *= temp
 				for t in range(len(neural['derivative'])):
 					neural['derivative'][t] = const*neural['father'][t]['value']
+					#We add the weight value here as well for ridge???
+					#neural['derivative'][t] = const*neural['father'][t]['value']+.03*neural['weights'][t]
+
 	
 	# Update weigth according to derivatives
 	def updateWeights(self, l_step):
@@ -306,7 +310,7 @@ print('Test error: ',a.errorCalculate(samples_Test,a.max2one))
 print('Train error: ',a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
 
 
-fileSave='SavedModel'+os.sep+'NN_savedModel_'+str(datetime.timestamp(datetime.now())).replace('.','')+'.sav'
+fileSave='SavedModels'+os.sep+'NN_savedModel_'+str(datetime.timestamp(datetime.now())).replace('.','')+'.sav'
 pickle.dump(a,open(fileSave,'wb'))
 
 #%%
