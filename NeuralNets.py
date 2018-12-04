@@ -297,12 +297,11 @@ outputSize = len(oneHotLabels[0])
 #NeuralNet(layerSize,regulariztaion,regValue)
 a = NeuralNet([inputSize,30,outputSize],'ridge',0.0001)
 
-
-
 #%%
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
+
 try:
 	#a.SGD_TrainThreshold(samples, 0.05, .045)
 	a.SGD_TrainThreshold(samples, 0.001, .04)
@@ -330,6 +329,7 @@ print('Train error: ',a.errorCalculate(samples, a.max2one)) # achieves the train
 
 
 fileSave='SavedModels'+os.sep+'NN_savedModel_'+str(datetime.timestamp(datetime.now())).replace('.','')+'.sav'
+
 with open(fileSave, 'wb') as f:
 	pickle.dump(a, f)
 
