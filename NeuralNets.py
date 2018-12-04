@@ -305,13 +305,17 @@ step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 try:
 	#a.SGD_TrainThreshold(samples, 0.05, .045)
 	a.SGD_TrainThreshold(samples, 0.001, .04)
-except KeyboardInterrupt:
+except (KeyboardInterrupt,SystemExit):
 	print("Keyboard interuption... Trying to save model")
 	fileSave = 'SavedModels' + os.sep + 'NN_savedModel_' + str(datetime.timestamp(datetime.now())).replace('.',																									  '') + '.sav'
 	with open(fileSave, 'wb') as f:
 		pickle.dump(a, f)
 	print('Train error: ', a.errorCalculate(samples, a.max2one))  # achieves the training error to be 0.0
 	print('Exiting .... ')
+	#raise
+except:
+	print("Some other error")
+	#raise
 
 
 #%% Gets the magnitude of the weights at each layer for each neuron
