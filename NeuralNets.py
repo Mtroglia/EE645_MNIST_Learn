@@ -111,11 +111,7 @@ class NeuralNet:
 				if self.regularization == 'none':
 					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']
 				if self.regularization == 'ridge':
-<<<<<<< HEAD
-					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+0.00001*layer[i]['weights'][j]
-=======
 					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+self.regVal*layer[i]['weights'][j]
->>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
 
 		# Internal layers
 		for k in range(2, self._layer):
@@ -298,22 +294,14 @@ samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 inputSize = len(images_train[0])
 outputSize = len(oneHotLabels[0])
 #a = NeuralNet([inputSize,30,outputSize],'none')
-<<<<<<< HEAD
-a = NeuralNet([inputSize,30,outputSize],'none')
-=======
 #NeuralNet(layerSize,regulariztaion,regValue)
 a = NeuralNet([inputSize,30,outputSize],'ridge',0.0001)
->>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
-
-
 
 #%%
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
-<<<<<<< HEAD
-a.SGD_TrainThreshold(samples, 0.005, .045)
-=======
+
 try:
 	#a.SGD_TrainThreshold(samples, 0.05, .045)
 	a.SGD_TrainThreshold(samples, 0.001, .04)
@@ -324,7 +312,6 @@ except KeyboardInterrupt:
 		pickle.dump(a, f)
 	print('Train error: ', a.errorCalculate(samples, a.max2one))  # achieves the training error to be 0.0
 	print('Exiting .... ')
->>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
 
 
 #%% Gets the magnitude of the weights at each layer for each neuron
@@ -342,12 +329,9 @@ print('Train error: ',a.errorCalculate(samples, a.max2one)) # achieves the train
 
 
 fileSave='SavedModels'+os.sep+'NN_savedModel_'+str(datetime.timestamp(datetime.now())).replace('.','')+'.sav'
-<<<<<<< HEAD
-pickle.dump(a,open(fileSave,'wb'))
-=======
+
 with open(fileSave, 'wb') as f:
 	pickle.dump(a, f)
->>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
 
 #%%
 '''

@@ -299,13 +299,9 @@ samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 
 #Load a pickled model
 loadFileName= 'SavedModels'+os.sep+'NN_saveModel_EXAMPLE.sav'
-<<<<<<< HEAD
-loaded_NN = pickle.load(open(loadFileName,'rb'))
-=======
+
 with open(loadFileName,'rb')as f:
 	loaded_NN= pickle.load(f)
->>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
-print('Testing Loaded Model')
 
 #%% Choose a single sample number below to see if it correctly classifies
 print(loaded_NN.singleErrorCalculate(samples_Test[8],loaded_NN.max2one))
