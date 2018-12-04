@@ -317,6 +317,7 @@ except:
 	print("Some other error")
 	#raise
 
+
 #%% Gets the magnitude of the weights at each layer for each neuron
 
 magWeights = a.getMagWeights()
