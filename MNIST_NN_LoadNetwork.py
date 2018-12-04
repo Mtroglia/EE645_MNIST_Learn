@@ -209,12 +209,27 @@ class NeuralNet:
 	def errorCalculate(self, sample_l, trim):
 		print('Calc error...')
 		err = 0
+		j=0
 		for i in sample_l:
 			b = trim(self.evaluate(i[0]))
 			#print(b,i[1],self.isMatch(b,i[1]))
 			if not self.isMatch(b,i[1]):
 				err += 1
+				#print('Misclass sample No.',j)
+			j+=1
 		return float(err) / len(sample_l)
+
+	def singleErrorCalculate(self, sample_l, trim):
+		print('Calc error...')
+		err = 0
+		y_hat= trim(self.evaluate(sample_l[0]))
+		print('Expected: ', sample_l[1])
+		print('Got: ', y_hat)
+		if not self.isMatch(y_hat,sample_l[1]):
+			err='Misclassified'
+		else:
+			err = 'Correctly classified'
+		return (err)
 
 	''' Stochastic gradient decent with training sample list 
 		'tain_l', the gradient decent step length 'l_step', 
@@ -284,9 +299,20 @@ samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 
 #Load a pickled model
 loadFileName= 'SavedModels'+os.sep+'NN_saveModel_EXAMPLE.sav'
+<<<<<<< HEAD
 loaded_NN = pickle.load(open(loadFileName,'rb'))
+=======
+with open(loadFileName,'rb')as f:
+	loaded_NN= pickle.load(f)
+>>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
 print('Testing Loaded Model')
-print(loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one))
+
+#%% Choose a single sample number below to see if it correctly classifies
+print(loaded_NN.singleErrorCalculate(samples_Test[8],loaded_NN.max2one))
+
+#Get error% of entire test set
+#print(loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one))
+
 
 magWeights = loaded_NN.getMagWeights()
 

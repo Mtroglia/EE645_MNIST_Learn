@@ -20,10 +20,11 @@ class NeuralNet:
 	the number of neurals in each layer, the first layer is
 	the input layer and the last is output layer.
 	'''
-	def __init__(self, Layer,reg):
+	def __init__(self, Layer,reg,regValue):
 
 		self._layer = len(Layer)
 		self.regularization =reg
+		self.regVal=regValue
 		self.nets, Father = [], []
 		for i in range(self._layer):
 			current_layer = []
@@ -110,7 +111,11 @@ class NeuralNet:
 				if self.regularization == 'none':
 					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']
 				if self.regularization == 'ridge':
+<<<<<<< HEAD
 					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+0.00001*layer[i]['weights'][j]
+=======
+					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+self.regVal*layer[i]['weights'][j]
+>>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
 
 		# Internal layers
 		for k in range(2, self._layer):
@@ -250,6 +255,14 @@ class NeuralNet:
 				self.gradientDecent(train, l_step)
 			test = random.sample(train_l, 1000)
 			ac_err = self.errorCalculate(test, self.max2one)
+			if epoch%5==0:
+				fileSave = 'SavedModels' + os.sep + 'NN_savedModel_' + str(datetime.timestamp(datetime.now())).replace(
+					'.', '') +"_epoch"+str(epoch)+'.sav'
+				with open(fileSave, 'wb') as f:
+					pickle.dump(a,f)
+
+				with open("ModelEpochStats.txt", 'w+') as f:
+					f.write(fileSave+" Epoch "+str(epoch)+" Train Error "+ str(ac_err))
 			print("Acc Error, epoch")
 			print(ac_err, epoch)
 			epoch += 1
@@ -285,7 +298,12 @@ samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 inputSize = len(images_train[0])
 outputSize = len(oneHotLabels[0])
 #a = NeuralNet([inputSize,30,outputSize],'none')
+<<<<<<< HEAD
 a = NeuralNet([inputSize,30,outputSize],'none')
+=======
+#NeuralNet(layerSize,regulariztaion,regValue)
+a = NeuralNet([inputSize,30,outputSize],'ridge',0.0001)
+>>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
 
 
 
@@ -293,7 +311,20 @@ a = NeuralNet([inputSize,30,outputSize],'none')
 epoch_number = 100
 step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
+<<<<<<< HEAD
 a.SGD_TrainThreshold(samples, 0.005, .045)
+=======
+try:
+	#a.SGD_TrainThreshold(samples, 0.05, .045)
+	a.SGD_TrainThreshold(samples, 0.001, .04)
+except KeyboardInterrupt:
+	print("Keyboard interuption... Trying to save model")
+	fileSave = 'SavedModels' + os.sep + 'NN_savedModel_' + str(datetime.timestamp(datetime.now())).replace('.',																									  '') + '.sav'
+	with open(fileSave, 'wb') as f:
+		pickle.dump(a, f)
+	print('Train error: ', a.errorCalculate(samples, a.max2one))  # achieves the training error to be 0.0
+	print('Exiting .... ')
+>>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
 
 
 #%% Gets the magnitude of the weights at each layer for each neuron
@@ -306,12 +337,17 @@ TODO Determine the magnitude of the weights
 #%% Evaluate NN on the training, Transform the output for each for a sample by method max2One or naiveBinary
 #print(a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
 
-print('Test error: ',a.errorCalculate(samples_Test,a.max2one))
-print('Train error: ',a.errorCalculate(samples, a.naiveBinary)) # achieves the training error to be 0.0
+#print('Test error: ',a.errorCalculate(samples_Test,a.max2one))
+print('Train error: ',a.errorCalculate(samples, a.max2one)) # achieves the training error to be 0.0
 
 
 fileSave='SavedModels'+os.sep+'NN_savedModel_'+str(datetime.timestamp(datetime.now())).replace('.','')+'.sav'
+<<<<<<< HEAD
 pickle.dump(a,open(fileSave,'wb'))
+=======
+with open(fileSave, 'wb') as f:
+	pickle.dump(a, f)
+>>>>>>> 9ff8824a8155dd484f567aa92055919e9c89a8aa
 
 #%%
 '''
