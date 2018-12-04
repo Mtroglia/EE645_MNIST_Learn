@@ -295,16 +295,19 @@ inputSize = len(images_train[0])
 outputSize = len(oneHotLabels[0])
 #a = NeuralNet([inputSize,30,outputSize],'none')
 #NeuralNet(layerSize,regulariztaion,regValue)
-a = NeuralNet([inputSize,30,outputSize],'ridge',0.0001)
-
+regValue = 0.0001
 #%%
 epoch_number = 100
-step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
+step_size = 0.001 # math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
+desiredTrainingErr = 0.04
+
+#Initialize the NN
+a = NeuralNet([inputSize,30,outputSize],'ridge',regValue)
 
 try:
 	#a.SGD_TrainThreshold(samples, 0.05, .045)
-	a.SGD_TrainThreshold(samples, 0.001, .04)
+	a.SGD_TrainThreshold(samples, step_size, desiredTrainingErr)
 except (KeyboardInterrupt,SystemExit):
 	print("Keyboard interuption... Trying to save model")
 	fileSave = 'SavedModels' + os.sep + 'NN_savedModel_' + str(datetime.timestamp(datetime.now())).replace('.',																									  '') + '.sav'
