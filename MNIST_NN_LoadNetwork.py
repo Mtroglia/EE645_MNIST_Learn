@@ -20,11 +20,14 @@ class NeuralNet:
 	the number of neurals in each layer, the first layer is
 	the input layer and the last is output layer.
 	'''
-	def __init__(self, Layer,reg):
+	def __init__(self, Layer,reg,regValue):
 
 		self._layer = len(Layer)
 		self.regularization =reg
 		self.nets, Father = [], []
+		self.regVal=regValue
+		self.trainErr=1
+		self.testErr=1
 		for i in range(self._layer):
 			current_layer = []
 			for j in range(Layer[i]):
@@ -110,7 +113,7 @@ class NeuralNet:
 				if self.regularization == 'none':
 					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']
 				if self.regularization == 'ridge':
-					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+0.03*layer[i]['weights'][j]
+					layer[i]['derivative'][j] = const*layer[i]['father'][j]['value']+self.regVal*layer[i]['weights'][j]
 
 		# Internal layers
 		for k in range(2, self._layer):
@@ -259,8 +262,16 @@ class NeuralNet:
 					print('Running epoch ', epoch,' Sample No. ', j)
 				j += 1
 				self.gradientDecent(train, l_step)
-			test = random.sample(train_l, 1000)
+			test = random.sample(train_l, 5000)
 			ac_err = self.errorCalculate(test, self.max2one)
+			if epoch%5==0:
+				fileSave = 'SavedModels' + os.sep + 'NN_savedModel_' + str(datetime.timestamp(datetime.now())).replace(
+					'.', '') +"_epoch"+str(epoch)+'.sav'
+				with open(fileSave, 'wb') as f:
+					pickle.dump(self,f)
+
+				with open("ModelEpochStats.txt", 'a+') as f:
+					f.write(fileSave+" Epoch "+str(epoch)+" Train Error "+ str(ac_err)+"\n")
 			print("Acc Error, epoch")
 			print(ac_err, epoch)
 			epoch += 1
@@ -298,31 +309,39 @@ samples_Test = MP.getSamples(np.array(images_test),oneHotLabels_Test)
 #%% Evaluate NN on the training and Test, Transform the output for each for a sample by method max2One or naiveBinary
 
 #Load a pickled model
-loadFileName= 'SavedModels'+os.sep+'NN_saveModel_EXAMPLE.sav'
+#loadFileName= 'SavedModels'+os.sep+'NN_savedModel_1544157538559745_epoch0.sav'#'NN_saveModel_EXAMPLE.sav'
+loadFileName= 'SavedModels'+os.sep+'NN_savedModel_1544655323473349Optimal.sav'#'SavedModels'+os.sep+'NN_savedModel_1544157538559745_epoch0.sav'#'NN_saveModel_EXAMPLE.sav'
 
 with open(loadFileName,'rb')as f:
 	loaded_NN= pickle.load(f)
 
 #%% Choose a single sample number below to see if it correctly classifies
-print(loaded_NN.singleErrorCalculate(samples_Test[8],loaded_NN.max2one))
+#print(loaded_NN.singleErrorCalculate(samples_Test[8],loaded_NN.max2one))
 
 #Get error% of entire test set
 #print(loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one))
-
+#%%#For continued Learning
+regValue= 0.00001
+regularization='ridge'
+loaded_NN.regVal =regValue
+loaded_NN.regularization = regularization
 epoch_number = 100
-step_size = math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
+step_size = 0.001 # math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
+desiredTrainingErr = 0.017
 
-#For continued Learning
 try:
+	print("Running Training with ",regularization,regValue,' step size ',step_size)
+	print("Current Train Error: ",loaded_NN.trainErr)
+	print("Current Test Error: ",loaded_NN.testErr)
 	#a.SGD_TrainThreshold(samples, 0.05, .045)
-	loaded_NN.SGD_TrainThreshold(samples, 0.001, .04)
+	loaded_NN.SGD_TrainThreshold(samples, step_size, desiredTrainingErr)
 except (KeyboardInterrupt,SystemExit):
 	print("Keyboard interuption... Trying to save model")
 	fileSave = 'SavedModels' + os.sep + 'NN_savedModel_' + str(datetime.timestamp(datetime.now())).replace('.',																									  '') + '.sav'
 	with open(fileSave, 'wb') as f:
-		pickle.dump(a, f)
-	print('Train error: ', loaded_NN.errorCalculate(samples, a.max2one))  # achieves the training error to be 0.0
+		pickle.dump(loaded_NN, f)
+	print('Train error: ', loaded_NN.errorCalculate(samples, loaded_NN.max2one))  # achieves the training error to be 0.0
 	print('Exiting .... ')
 	#raise
 except:
@@ -330,7 +349,19 @@ except:
 	#raise
 
 #magWeights = loaded_NN.getMagWeights()
+train_err = loaded_NN.errorCalculate(samples, loaded_NN.max2one)
+print('Train error: ', train_err )  # achieves the training error to be 0.0
+loaded_NN.trainErr=train_err
+
+test_err= loaded_NN.errorCalculate(samples_Test,loaded_NN.max2one)
+print('Test error: ',test_err )
+loaded_NN.testErr=test_err
 
 
-#fileSave='NN_savedModel_'+str(datetime.timestamp(datetime.now()))+'.sav'
-#pickle.dump(a,open(fileSave,'wb'))
+#
+fileSave='SavedModels'+os.sep+ 'NN_savedModel_'+str(datetime.timestamp(datetime.now())).replace(
+					'.', '')+'Optimal'+'.sav'
+with open(fileSave, 'wb') as f:
+	pickle.dump(loaded_NN, f)
+with open("ModelEpochStats.txt", 'a+') as f:
+	f.write(fileSave + " Train Error " + str(train_err)+  " Test Error " + str(test_err) +"\n")

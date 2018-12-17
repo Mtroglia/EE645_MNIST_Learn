@@ -298,7 +298,7 @@ outputSize = len(oneHotLabels[0])
 regValue = 0.0001
 #%%
 epoch_number = 100
-step_size = 0.001 # math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
+step_size = 0.01 # math.sqrt(1/epoch_number) #0.25 # should be sqrroot(1/epoch)ca
 #a.SGD(samples, step_size, epoch_number)
 desiredTrainingErr = 0.04
 
